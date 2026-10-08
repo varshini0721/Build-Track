@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>BuildTrack - Construction Management</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">🏗️</div>
+
+            <div>
+                <h2>BuildTrack</h2>
+                <span>Construction Management</span>
+            </div>
+
+        </div>
+
+
+        <nav class="menu">
+
+            <button
+                class="menu-item active"
+                onclick="showPage('dashboard', this)"
+            >
+                <span>🏠</span>
+                Dashboard
+            </button>
+
+
+            <button
+                class="menu-item"
+                onclick="showPage('projects', this)"
+            >
+                <span>🏗️</span>
+                Projects
+            </button>
+
+
+            <button
+                class="menu-item"
+                onclick="showPage('workers', this)"
+            >
+                <span>👷</span>
+                Workers
+            </button>
+
+
+            <button
+                class="menu-item"
+                onclick="showPage('materials', this)"
+            >
+                <span>📦</span>
+                Materials
+            </button>
+
+
+            <button
+                class="menu-item"
+                onclick="showPage('expenses', this)"
+            >
+                <span>💰</span>
+                Expenses
+            </button>
+
+
+            <button
+                class="menu-item"
+                onclick="showPage('tasks', this)"
+            >
+                <span>📅</span>
+                Tasks
+            </button>
+
+
+            <button
+                class="menu-item"
+                onclick="showPage('reports', this)"
+            >
+                <span>📊</span>
+                Reports
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+            <p>BuildTrack v1.0</p>
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1 id="pageTitle">
+                    Dashboard
+                </h1>
+
+                <p id="pageSubtitle">
+                    Overview of your construction projects
+                </p>
+
+            </div>
+
+
+            <div class="user">
+
+                <div class="user-icon">
+                    A
+                </div>
+
+                <div>
+
+                    <strong>Admin</strong>
+
+                    <small>
+                        Project Manager
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             DASHBOARD
+        ================================================== -->
+
+        <section
+            id="dashboard"
+            class="page active-page"
+        >
+
+            <div class="welcome">
+
+                <div>
+
+                    <h2>
+                        Hello, Admin 👋
+                    </h2>
+
+                    <p>
+                        Here's what's happening with your projects today.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="openProjectModal()"
+                >
+                    + Add Project
+                </button>
+
+            </div>
+
+
+            <!-- STAT CARDS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        🏗️
+                    </div>
+
+                    <div>
+
+                        <p>Total Projects</p>
+
+                        <h2 id="totalProjects">
+                            3
+                        </h2>
+
+                        <span class="positive">
+                            Current projects
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        📋
+                    </div>
+
+                    <div>
+
+                        <p>Active Projects</p>
+
+                        <h2 id="activeProjects">
+                            2
+                        </h2>
+
+                        <span class="positive">
+                            Currently running
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        👷
+                    </div>
+
+                    <div>
+
+                        <p>Total Workers</p>
+
+                        <h2 id="totalWorkers">
+                            6
+                        </h2>
+
+                        <span class="positive">
+                            Team members
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon red">
+                        💰
+                    </div>
+
+                    <div>
+
+                        <p>Total Expenses</p>
+
+                        <h2 id="totalExpenses">
+                            ₹10L
+                        </h2>
+
+                        <span class="negative">
+                            Across projects
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROJECT PROGRESS + TASKS -->
+
+            <div class="dashboard-grid">
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                Project Progress
+                            </h3>
+
+                            <p>
+                                Current progress of major projects
+                            </p>
+
+                        </div>
+
+                        <button
+                            onclick="showPage('projects')"
+                        >
+                            View All
+                        </button>
+
+                    </div>
+
+
+                    <div id="dashboardProjects"></div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                Upcoming Tasks
+                            </h3>
+
+                            <p>
+                                Tasks that need attention
+                            </p>
+
+                        </div>
+
+                        <button
+                            onclick="showPage('tasks')"
+                        >
+                            View All
+                        </button>
+
+                    </div>
+
+
+                    <div id="dashboardTasks"></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTIVITY -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            Recent Activity
+                        </h3>
+
+                        <p>
+                            Latest updates
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div id="activityList"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PROJECTS
+        ================================================== -->
+
+        <section
+            id="projects"
+            class="page"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Projects
+                    </h2>
+
+                    <p>
+                        Manage all construction projects
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="openProjectModal()"
+                >
+                    + Add Project
+                </button>
+
+            </div>
+
+
+            <div
+                id="projectContainer"
+                class="project-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- =================================================
+             WORKERS
+        ================================================== -->
+
+        <section
+            id="workers"
+            class="page"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Workers
+                    </h2>
+
+                    <p>
+                        Manage workers and assignments
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="openWorkerModal()"
+                >
+                    + Add Worker
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="table-top">
+
+                    <input
+                        type="text"
+                        id="workerSearch"
+                        placeholder="Search workers..."
+                        onkeyup="searchWorkers()"
+                    >
+
+
+                    <select
+                        id="workerFilter"
+                        onchange="searchWorkers()"
+                    >
+
+                        <option value="all">
+                            All Workers
+                        </option>
+
+                        <option value="Active">
+                            Active
+                        </option>
+
+                        <option value="Off">
+                            Off
+                        </option>
+
+                    </select>
+
+
+                    <select
+                        id="workerProjectFilter"
+                        onchange="searchWorkers()"
+                    >
+
+                        <option value="all">
+                            All Projects
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Worker
+                                </th>
+
+                                <th>
+                                    Role
+                                </th>
+
+                                <th>
+                                    Project
+                                </th>
+
+                                <th>
+                                    Attendance
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="workerTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MATERIALS
+        ================================================== -->
+
+        <section
+            id="materials"
+            class="page"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Materials
+                    </h2>
+
+                    <p>
+                        Track construction materials
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="openMaterialModal()"
+                >
+                    + Add Material
+                </button>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        📦
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Total Materials
+                        </p>
+
+                        <h2 id="totalMaterials">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Good Stock
+                        </p>
+
+                        <h2 id="goodMaterials">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon red">
+                        ⚠
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Low Stock
+                        </p>
+
+                        <h2 id="lowMaterials">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Material
+                                </th>
+
+                                <th>
+                                    Project
+                                </th>
+
+                                <th>
+                                    Total
+                                </th>
+
+                                <th>
+                                    Used
+                                </th>
+
+                                <th>
+                                    Remaining
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="materialTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             EXPENSES
+        ================================================== -->
+
+        <section
+            id="expenses"
+            class="page"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Expenses & Budget
+                    </h2>
+
+                    <p>
+                        View budget breakdown for each project
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="openExpenseModal()"
+                >
+                    + Add Expense
+                </button>
+
+            </div>
+
+
+            <!-- PROJECT FILTER -->
+
+            <div class="project-filter">
+
+                <label>
+                    Select Project
+                </label>
+
+
+                <select
+                    id="expenseProjectFilter"
+                    onchange="renderProjectBudget()"
+                >
+
+                </select>
+
+            </div>
+
+
+            <!-- SELECTED PROJECT -->
+
+            <div id="projectBudgetSection"></div>
+
+        </section>
+
+
+        <!-- =================================================
+             TASKS
+        ================================================== -->
+
+        <section
+            id="tasks"
+            class="page"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Tasks
+                    </h2>
+
+                    <p>
+                        Track construction tasks and deadlines
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="openTaskModal()"
+                >
+                    + Add Task
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div id="taskList"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             REPORTS
+        ================================================== -->
+
+        <section
+            id="reports"
+            class="page"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Reports
+                    </h2>
+
+                    <p>
+                        Overview of project performance
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="printReport()"
+                >
+                    🖨 Print Report
+                </button>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        📈
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Project Completion
+                        </p>
+
+                        <h2 id="reportCompletion">
+                            0%
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        👷
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Worker Attendance
+                        </p>
+
+                        <h2>
+                            91%
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        📦
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Material Usage
+                        </p>
+
+                        <h2>
+                            74%
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon red">
+                        💰
+                    </div>
+
+                    <div>
+
+                        <p>
+                            Budget Used
+                        </p>
+
+                        <h2 id="reportBudget">
+                            0%
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel report-project-selector-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            Select Project
+                        </h3>
+
+                        <p>
+                            View the complete details of one project separately.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="project-filter report-project-filter">
+
+                    <label for="reportProjectFilter">
+                        Project
+                    </label>
+
+                    <select
+                        id="reportProjectFilter"
+                        onchange="renderSelectedProjectDetails(this.value)"
+                    >
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div id="selectedReportProjectDetails"></div>
+
+
+            <div class="panel">
+
+                <h3>
+                    Project Performance
+                </h3>
+
+                <div id="reportProjects"></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         PROJECT MODAL
+    ====================================================== -->
+
+    <div
+        id="projectModal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>
+                    Add New Project
+                </h2>
+
+                <button onclick="closeProjectModal()">
+                    ×
+                </button>
+
+            </div>
+
+
+            <label>
+                Project Name
+            </label>
+
+            <input
+                type="text"
+                id="projectName"
+                placeholder="Example: Office Building"
+            >
+
+
+            <label>
+                Location
+            </label>
+
+            <input
+                type="text"
+                id="projectLocation"
+                placeholder="Example: Bangalore"
+            >
+
+
+            <label>
+                Budget
+            </label>
+
+            <input
+                type="number"
+                id="projectBudget"
+                placeholder="Example: 2500000"
+            >
+
+
+            <label>
+                Start Date
+            </label>
+
+            <input
+                type="date"
+                id="projectStart"
+            >
+
+
+            <label>
+                Deadline
+            </label>
+
+            <input
+                type="date"
+                id="projectDeadline"
+            >
+
+
+            <div class="modal-buttons">
+
+                <button
+                    class="cancel-btn"
+                    onclick="closeProjectModal()"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="addProject()"
+                >
+                    Add Project
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         WORKER MODAL
+    ====================================================== -->
+
+    <div
+        id="workerModal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>
+                    Add New Worker
+                </h2>
+
+                <button onclick="closeWorkerModal()">
+                    ×
+                </button>
+
+            </div>
+
+
+            <label>
+                Worker Name
+            </label>
+
+            <input
+                type="text"
+                id="workerName"
+                placeholder="Example: Rahul"
+            >
+
+
+            <label>
+                Role
+            </label>
+
+            <input
+                type="text"
+                id="workerRole"
+                placeholder="Example: Mason"
+            >
+
+
+            <label>
+                Project
+            </label>
+
+            <select id="workerProject"></select>
+
+
+            <label>
+                Status
+            </label>
+
+            <select id="workerStatus">
+
+                <option value="Active">
+                    Active
+                </option>
+
+                <option value="Off">
+                    Off
+                </option>
+
+            </select>
+
+
+            <label>
+                Attendance
+            </label>
+
+            <select id="workerAttendance">
+
+                <option value="Present">
+                    Present
+                </option>
+
+                <option value="Absent">
+                    Absent
+                </option>
+
+            </select>
+
+
+            <div class="modal-buttons">
+
+                <button
+                    class="cancel-btn"
+                    onclick="closeWorkerModal()"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="addWorker()"
+                >
+                    Add Worker
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         MATERIAL MODAL
+    ====================================================== -->
+
+    <div
+        id="materialModal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>
+                    Add New Material
+                </h2>
+
+                <button onclick="closeMaterialModal()">
+                    ×
+                </button>
+
+            </div>
+
+
+            <label>
+                Material Name
+            </label>
+
+            <input
+                type="text"
+                id="materialName"
+                placeholder="Example: Cement"
+            >
+
+
+            <label>
+                Project
+            </label>
+
+            <select id="materialProject"></select>
+
+
+            <label>
+                Total Quantity
+            </label>
+
+            <input
+                type="number"
+                id="materialQuantity"
+                placeholder="Example: 500"
+            >
+
+
+            <label>
+                Unit
+            </label>
+
+            <select id="materialUnit">
+
+                <option value="bags">
+                    Bags
+                </option>
+
+                <option value="tons">
+                    Tons
+                </option>
+
+                <option value="pieces">
+                    Pieces
+                </option>
+
+                <option value="litres">
+                    Litres
+                </option>
+
+                <option value="kg">
+                    Kg
+                </option>
+
+            </select>
+
+
+            <label>
+                Used Quantity
+            </label>
+
+            <input
+                type="number"
+                id="materialUsed"
+                value="0"
+            >
+
+
+            <div class="modal-buttons">
+
+                <button
+                    class="cancel-btn"
+                    onclick="closeMaterialModal()"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="addMaterial()"
+                >
+                    Add Material
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         TASK MODAL
+    ====================================================== -->
+
+    <div
+        id="taskModal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>
+                    Add New Task
+                </h2>
+
+                <button onclick="closeTaskModal()">
+                    ×
+                </button>
+
+            </div>
+
+
+            <label>
+                Task Name
+            </label>
+
+            <input
+                type="text"
+                id="taskName"
+                placeholder="Example: Install electrical wiring"
+            >
+
+
+            <label>
+                Project
+            </label>
+
+            <select id="taskProject"></select>
+
+
+            <label>
+                Deadline
+            </label>
+
+            <input
+                type="date"
+                id="taskDeadline"
+            >
+
+
+            <label>
+                Priority
+            </label>
+
+            <select id="taskPriority">
+
+                <option value="High">
+                    High
+                </option>
+
+                <option value="Medium">
+                    Medium
+                </option>
+
+                <option value="Low">
+                    Low
+                </option>
+
+            </select>
+
+
+            <div class="modal-buttons">
+
+                <button
+                    class="cancel-btn"
+                    onclick="closeTaskModal()"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="addTask()"
+                >
+                    Add Task
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         EXPENSE MODAL
+    ====================================================== -->
+
+    <div
+        id="expenseModal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>
+                    Add Expense
+                </h2>
+
+                <button onclick="closeExpenseModal()">
+                    ×
+                </button>
+
+            </div>
+
+
+            <label>
+                Project
+            </label>
+
+            <select id="expenseProject"></select>
+
+
+            <label>
+                Category
+            </label>
+
+            <select id="expenseCategory">
+
+                <option value="Materials">
+                    Materials
+                </option>
+
+                <option value="Labour">
+                    Labour
+                </option>
+
+                <option value="Equipment">
+                    Equipment
+                </option>
+
+                <option value="Transportation">
+                    Transportation
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+
+            <label>
+                Amount
+            </label>
+
+            <input
+                type="number"
+                id="expenseAmount"
+                placeholder="Example: 25000"
+            >
+
+
+            <div class="modal-buttons">
+
+                <button
+                    class="cancel-btn"
+                    onclick="closeExpenseModal()"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="addExpense()"
+                >
+                    Add Expense
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
